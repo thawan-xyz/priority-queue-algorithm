@@ -63,11 +63,6 @@
   }
 }]]></component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="priority_queue_algorithm" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="priority_queue_algorithm" TARGET_NAME="priority_queue_algorithm" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="priority_queue_algorithm" RUN_TARGET_NAME="priority_queue_algorithm">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -83,6 +78,9 @@
       <option name="presentableId" value="Default" />
       <updated>1718361701518</updated>
       <workItem from="1718361705226" duration="8378000" />
+      <workItem from="1718374908830" duration="3132000" />
+      <workItem from="1718378178662" duration="732000" />
+      <workItem from="1718397022728" duration="3987000" />
     </task>
     <servers />
   </component>
@@ -93,5 +91,14 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="array" language="C++" />
+        <watch expression="(int(*)[4])copy" language="C++" />
+        <watch expression="(int(*)[8])array" language="C++" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
