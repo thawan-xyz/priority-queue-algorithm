@@ -5,14 +5,14 @@ template <typename E>
 class MaxPriorityQueue {
 public:
     MaxPriorityQueue(E* array, int length, int capacity) : array{array}, length(length), capacity(capacity) {
-        for (int index = length / 2; index > 0; --index) {
+        for (int index = length - 1 / 2; index > -1; --index) {
             int parentIndex = index; E parentValue = array[parentIndex];
 
             bool isPriorityQueue = false;
-            while (!isPriorityQueue && (2 * parentIndex) <= length) {
-                int childIndex = parentIndex * 2;
+            while (!isPriorityQueue && ((2 * parentIndex) + 1) < length) {
+                int childIndex = (2 * parentIndex) + 1;
 
-                if (childIndex < length) if (array[childIndex + 1] > array[childIndex]) childIndex++;
+                if (childIndex < length - 1) if (array[childIndex + 1] > array[childIndex]) childIndex++;
 
                 if (parentValue >= array[childIndex]) {
                     isPriorityQueue = true;
@@ -28,22 +28,28 @@ public:
     ~MaxPriorityQueue() = default;
 
     void insert(E value) {
+        if (length == capacity) return;
+
+        array[length + 1] = value;
+
+        length++;
+
     }
 
     E remove() {
-        if (length < 1) return E{};
+        if (length < 0) return E{};
 
-        E tempValue = array[1]; array[1] = array[length];
+        E tempValue = array[0]; array[0] = array[length - 1];
 
         length--;
 
-        int parentIndex = 1; E parentValue = array[parentIndex];
+        int parentIndex = 0; E parentValue = array[parentIndex];
 
         bool isPriorityQueue = false;
-        while (!isPriorityQueue && (2 * parentIndex) <= length) {
-            int childIndex = parentIndex * 2;
+        while (!isPriorityQueue && ((2 * parentIndex) + 1) < length) {
+            int childIndex = (2 * parentIndex) + 1;
 
-            if (childIndex < length) if (array[childIndex + 1] > array[childIndex]) childIndex++;
+            if (childIndex < length - 1) if (array[childIndex + 1] > array[childIndex]) childIndex++;
 
             if (parentValue >= array[childIndex]) {
                 isPriorityQueue = true;
@@ -57,40 +63,9 @@ public:
         return tempValue;
     }
 
-    void print() {
-        for (int i = 1; i <= length; ++i) {
-            cout << array[i]; if (i != length) cout << " ";
-        }
-    }
-
-    void sort(int range) {
-        if (range > length) return;
-
-        auto copy = new E[range + 1]; for (int i = 0; i <= range; ++i) { copy[i] = array[i]; }
-
-        while (range > 0) {
-            E tempValue = copy[1]; copy[1] = copy[range];
-
-            range--;
-
-            int parentIndex = 1; E parentValue = copy[parentIndex];
-
-            bool isPriorityQueue = false;
-            while (!isPriorityQueue && (2 * parentIndex) <= range) {
-                int childIndex = parentIndex * 2;
-
-                if (childIndex < range) if (copy[childIndex + 1] > copy[childIndex]) childIndex++;
-
-                if (parentValue >= copy[childIndex]) {
-                    isPriorityQueue = true;
-                }
-                else {
-                    copy[parentIndex] = copy[childIndex]; parentIndex = childIndex;
-                }
-            }
-            copy[parentIndex] = parentValue;
-
-            cout << tempValue; if (range != 0) cout << " ";
+    void print() const {
+        for (int i = 0; i < length; ++i) {
+            cout << array[i]; if (i < length - 1) cout << " ";
         }
     }
 
