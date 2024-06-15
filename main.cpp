@@ -2,9 +2,9 @@
 using namespace std;
 
 template <typename E>
-class MaxPriorityQueue {
+class PriorityQueue {
 public:
-    MaxPriorityQueue(E* array, int length, int capacity) : array{array}, length(length), capacity(capacity) {
+    PriorityQueue(E* array, int capacity, int length) : array{array}, capacity(capacity), length(length) {
         for (int index = length - 1 / 2; index > -1; --index) {
             int parentIndex = index; E parentValue = array[parentIndex];
 
@@ -25,15 +25,29 @@ public:
         }
     }
 
-    ~MaxPriorityQueue() = default;
+    ~PriorityQueue() = default;
 
     void insert(E value) {
         if (length == capacity) return;
 
-        array[length + 1] = value;
+        array[length] = value;
+
+        int childIndex = length; E childValue = array[childIndex];
 
         length++;
 
+        bool isPriorityQueue = false;
+        while (!isPriorityQueue && childIndex > 0) {
+            int parentIndex = (childIndex - 1) / 2;
+
+            if (array[parentIndex] >= childValue) {
+                isPriorityQueue = true;
+            }
+            else {
+                array[childIndex] = array[parentIndex]; childIndex = parentIndex;
+            }
+        }
+        array[childIndex] = childValue;
     }
 
     E remove() {
@@ -41,9 +55,9 @@ public:
 
         E tempValue = array[0]; array[0] = array[length - 1];
 
-        length--;
-
         int parentIndex = 0; E parentValue = array[parentIndex];
+
+        length--;
 
         bool isPriorityQueue = false;
         while (!isPriorityQueue && ((2 * parentIndex) + 1) < length) {
@@ -83,8 +97,8 @@ public:
 
 private:
     E* array;
-    int length;
     int capacity;
+    int length;
 };
 
 int main() {

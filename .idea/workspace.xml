@@ -59,6 +59,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -81,6 +82,9 @@
       <workItem from="1718374908830" duration="3132000" />
       <workItem from="1718378178662" duration="732000" />
       <workItem from="1718397022728" duration="7931000" />
+      <workItem from="1718478308277" duration="371000" />
+      <workItem from="1718479095695" duration="2000" />
+      <workItem from="1718479120666" duration="3273000" />
     </task>
     <servers />
   </component>
@@ -96,9 +100,11 @@
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
         <watch expression="array" language="C++" />
-        <watch expression="(int(*)[4])copy" language="C++" />
         <watch expression="(int(*)[8])array" language="C++" />
       </configuration>
+      <inline-watch fileUrl="file://$PROJECT_DIR$/main.cpp" line="40">
+        <watch expression="((childIndex - 1) / 2)" language="C++" />
+      </inline-watch>
     </watches-manager>
   </component>
 </project>
